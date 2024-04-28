@@ -1,0 +1,52 @@
+# TODO: Create your Kivy layout in the kv language here
+BoxLayout:
+    orientation: 'horizontal'
+    BoxLayout:  # Left side.
+        orientation: 'vertical'
+        size_hint_x: 0.3
+        Label:
+            text: 'Sort by:'
+        Spinner:
+            id: sort_selection
+            text: app.sort_key
+            values: app.sort_option
+            on_text: app.update_sorting()
+        Label:
+            text: 'Add movie...'
+        Label:
+            text: 'Title'
+        TextInput:
+            id: input_title
+            write_tab: False
+        Label:
+            text: 'Category'
+        TextInput:
+            id: input_category
+            write_tab: False
+        Label:
+            text: 'Year'
+        TextInput:
+            id: input_year
+            write_tab: False
+        Button:
+            text: 'Add movie'
+            on_release: app.add_new_movie()
+        Button:
+            text: 'Clear'
+            id: clear
+            on_release: app.clear_movies()
+    BoxLayout:  # Right side.
+        orientation: 'vertical'
+        id: main
+        Label:
+            id: count_id
+            text: app.watch_status
+            size_hint_y: 0.1
+        BoxLayout:
+            orientation: 'vertical'
+            id: load_box
+            cols: 1
+        Label:
+            id: output
+            text: app.status_text
+            size_hint_y: 0.1
